@@ -1,202 +1,155 @@
 // ============================================================
-//  data.ts  –  EDIT THIS FILE TO UPDATE YOUR ENTIRE PORTFOLIO
+//  data.ts  –  EDIT THIS FILE TO UPDATE THE WHOLE PORTFOLIO
 // ============================================================
 
-// ── Personal Info ────────────────────────────────────────────
+const base = import.meta.env.BASE_URL;
+
+// ── Identity ─────────────────────────────────────────────────
 export const personal = {
     name: "Barath Suresh",
-    greeting: "Hi, I am",
-    tagline: "Nice to meet you",
-    role: "Software Engineer",
-    location: "Tempe, AZ",
-    email: "bsures11@asu.edu",
-    phone: "+1 (623) 212-9705",
-    openTo: "Open to collaborations & new opportunities",
-    about: `I'm a Computer Science graduate student at Arizona State University with a passion for
-building robust, scalable backend systems. My experience spans microservices architecture,
-distributed systems, real-time communication, and cloud-native tooling. I love turning
-complex engineering problems into clean, observable, and maintainable solutions.`,
-    interests: ["Backend Systems", "Distributed Computing", "AI/ML Infrastructure"],
-    // ── DROP your photo in the public/ folder, then set filename here ──
-    profileImage: `${import.meta.env.BASE_URL}profile.jpg`, // Works with both local (/) and deployed (/portfolio/)
-    // ── DROP your resume PDF in the public/ folder, then set filename here ──
-    resumeUrl: `${import.meta.env.BASE_URL}Barath_Suresh_Resume.pdf`,    // Works with both local (/) and deployed (/portfolio/)
+    first: "Barath",
+    role: "Backend engineer",
+    location: "Tempe, Arizona",
+    timeZone: "America/Phoenix",
+    email: "barathsuresh.dev@gmail.com",
+    availability: "Open to roles from 2027",
+    profileImage: `${base}profile.jpg`,
+    resumeUrl: `${base}Barath_Suresh_Resume.pdf`,
 };
 
-// ── Social Links ─────────────────────────────────────────────
+// ── Brand: one idea, repeated everywhere ─────────────────────
+export const brand = {
+    idea: "Systems you can see inside.",
+    greetings: ["Hello", "வணக்கம்", "नमस्ते", "Hola", "Bonjour"],
+    heroLine: { before: "Backend systems you can", emphasis: "see", after: "inside." },
+    heroIntro:
+        "I'm Barath, a backend engineer. I build services, queues and AI infrastructure with tracing, metrics and logs from the first commit, so when something breaks, it explains itself.",
+    keywords: [
+        "Distributed systems",
+        "Spring Boot",
+        "Observability",
+        "Event-driven design",
+        "AI infrastructure",
+        "RAG",
+        "Cloud-native",
+    ],
+    letter: [
+        "I like the part of software most people only notice when it breaks: queues, caches, auth, logs.",
+        "My rule is simple. If I can't see inside a system, I don't trust it, so I build with tracing and metrics from the start and treat dashboards as part of the product.",
+        "Lately that curiosity has pulled me toward AI infrastructure: retrieval, fine-tuning, and keeping inference endpoints standing when traffic spikes.",
+    ],
+};
+
 export const socials = {
     github: "https://github.com/barathsuresh",
     linkedin: "https://linkedin.com/in/barath-suresh",
-    twitter: "https://x.com/baraxh_s", // Update with your X handle
+    x: "https://x.com/baraxh_s",
     email: `mailto:${personal.email}`,
 };
 
-// ── Navigation ───────────────────────────────────────────────
 export const navLinks = [
     { label: "About", href: "#about" },
-    { label: "Experience", href: "#experience" },
+    { label: "Work", href: "#work" },
     { label: "Projects", href: "#projects" },
-    { label: "Skills", href: "#skills" },
+    { label: "Stack", href: "#stack" },
     { label: "Contact", href: "#contact" },
 ];
 
-// ── Experience ───────────────────────────────────────────────
-export interface ExperienceItem {
+// ── Work ─────────────────────────────────────────────────────
+export interface Role {
+    org: string;
     title: string;
-    organization: string;
-    location: string;
+    place: string;
     period: string;
-    bullets: string[];
+    summary: string;
+    points: string[];
 }
 
-export const experience: ExperienceItem[] = [
+export const work: Role[] = [
     {
-        title: "Software Development Engineer",
-        organization: "Tata Elxsi Ltd.",
-        location: "Chennai, India",
+        org: "Tata Elxsi",
+        title: "Software Engineer",
+        place: "Chennai",
         period: "Dec 2024 – Jul 2025",
-        bullets: [
-            "Built Java Spring APIs backed by MongoDB to process Excel-based employee datasets, reducing parsing time by 20% and streamlining workforce data ingestion.",
-            "Containerized services with Docker and integrated Prometheus & Grafana, improving CI/CD pipeline reliability and enabling real-time observability across six containerized services.",
-            "Automated log anomaly detection by containerizing a Spring AI + Gemma 3 service that summarizes and flags abnormal logs, reducing manual log triage.",
-            "Led weekly code reviews in a 5–8 member Agile team, reducing production bugs and improving overall code quality.",
+        summary: "Owned backend reliability for an OTT content platform: ingestion, auth and incident response.",
+        points: [
+            "Rebuilt the catalog bulk import as an asynchronous RabbitMQ pipeline, so 20,000-row files stopped timing out the UI.",
+            "Secured 50+ REST APIs with Spring Security, Azure AD OAuth 2.0 and JWT, and made auth fast enough to vanish from the latency graph.",
+            "Built a Spring AI and Gemma 3 pipeline that reads logs across six microservices and flags batch-upload crashes in minutes instead of hours.",
+            "Streamed crash logs through RabbitMQ into Grafana Loki for live triage, and added Hazelcast caching for hot catalog reads.",
         ],
     },
     {
-        title: "Software Development Engineer Intern",
-        organization: "Tata Elxsi Ltd.",
-        location: "Bengaluru, India",
+        org: "Tata Elxsi",
+        title: "Software Engineer Intern",
+        place: "Bengaluru",
         period: "Jan 2024 – Jun 2024",
-        bullets: [
-            "Built and containerized backend applications with Node.js, Express.js, and MongoDB, reducing deployment time by 50% and improving scalability.",
-            "Developed and dockerized a product catalog management microservice as a demo project, serving as a reference for building scalable services.",
-            "Integrated real-time communication using MQTT and WebSocket, reducing dropped messages and improving synchronization reliability.",
+        summary: "First taste of production telemetry: streaming data from set-top boxes to live dashboards.",
+        points: [
+            "Built FastAPI and MQTT ingestion pipelines to stream set-top box metrics at high throughput.",
+            "Wrote WebSocket relay services and PostgreSQL persistence that fed real-time Grafana dashboards.",
         ],
     },
 ];
 
 // ── Education ────────────────────────────────────────────────
-export interface EducationItem {
-    degree: string;
-    major: string;
-    organization: string;
-    location: string;
-    period: string;
-    bullets: string[];
-}
-
-export const education: EducationItem[] = [
-    {
-        degree: "Master of Science",
-        major: "Computer Science",
-        organization: "Arizona State University – Ira A. Fulton Schools of Engineering",
-        location: "Tempe, AZ",
-        period: "Aug 2025 – May 2027",
-        bullets: ["GPA: 3.67 / 4.00", "Fulton Schools of Engineering"],
-    },
-    {
-        degree: "Bachelor of Technology",
-        major: "Computer Science and Engineering",
-        organization: "SASTRA Deemed University",
-        location: "Thanjavur, Tamil Nadu, India",
-        period: "2020 – 2024",
-        bullets: ["GPA: 3.176 / 4.00"],
-    },
+export const education = [
+    { school: "Arizona State University", degree: "M.S. Computer Science", period: "2025 – 2027" },
+    { school: "SASTRA Deemed University", degree: "B.Tech Computer Science", period: "2020 – 2024" },
 ];
 
 // ── Projects ─────────────────────────────────────────────────
 export interface Project {
     name: string;
-    description: string;
-    longDescription: string;
+    kind: string;
+    summary: string;
     tags: string[];
     url: string;
-    featured: boolean;
 }
 
 export const projects: Project[] = [
     {
-        name: "Prism",
-        description: "Distributed Video Streaming Platform",
-        longDescription:
-            "Asynchronous RabbitMQ-based microservices platform with 8 Spring Boot services. Reduces video upload latency by 70% by offloading FFmpeg transcoding to background workers that generate 4 HLS quality variants.",
-        tags: ["Spring Boot", "RabbitMQ", "FFmpeg", "MinIO", "Prometheus", "Docker", "JWT"],
-        url: "https://github.com/barathsuresh/prism", // Update with actual repo URL
-        featured: true,
+        name: "Throttlr",
+        kind: "Distributed rate limiting",
+        summary:
+            "A rate limiter that shields APIs and LLM endpoints from traffic spikes, using atomic Redis Lua scripts on GCP Cloud Run. Tuned and load-tested until throughput climbed more than tenfold with zero errors, plus a live dashboard for rules.",
+        tags: ["Java", "Spring Boot", "Redis", "Lua", "Terraform", "React"],
+        url: "https://github.com/barathsuresh/throttlr", // verify repo URL
     },
     {
-        name: "HexScript",
-        description: "Secure Note-Taking App",
-        longDescription:
-            "Flutter-based secure note-taking app with offline support and AES-encrypted local storage. Features biometric authentication and a Material You-inspired UI with dark mode and custom theming.",
-        tags: ["Flutter", "Dart", "AES Encryption", "Biometric Auth", "Firebase"],
-        url: "https://github.com/barathsuresh/HexScript", // Update with actual repo URL
-        featured: true,
+        name: "Prism",
+        kind: "Video streaming platform",
+        summary:
+            "Eight Spring Boot services where RabbitMQ keeps big uploads away from FFmpeg transcoding, with a reactive gateway, multi-tenant API keys, and every request traced end to end through Zipkin, Prometheus, Grafana and Loki.",
+        tags: ["Spring Boot", "WebFlux", "RabbitMQ", "Zipkin", "AWS S3"],
+        url: "https://github.com/barathsuresh/prism",
     },
-    // ── Add more projects below ─────────────────────────────────
-    // {
-    //   name: "Project Name",
-    //   description: "One-line tagline",
-    //   longDescription: "A short paragraph describing the project.",
-    //   tags: ["Tag1", "Tag2"],
-    //   url: "https://github.com/...",
-    //   featured: false,
-    // },
+    {
+        name: "Sift",
+        kind: "Semantic codebase search",
+        summary:
+            "Ask questions of a repository and get answers with file and line citations. Tree-sitter parsing, NVIDIA NIM embeddings and hybrid search on pgvector, with incremental caching that turns a half-hour re-index into seconds.",
+        tags: ["Python", "pgvector", "tree-sitter", "NVIDIA NIM"],
+        url: "https://github.com/barathsuresh/sift", // verify repo URL
+    },
+    {
+        name: "NeuroScribe",
+        kind: "MRI-to-report AI pipeline",
+        summary:
+            "Fine-tuned language models that draft radiology reports from MRI scans, with a segmentation check that keeps every measurement grounded in the scan. Deployed on SageMaker with Terraform.",
+        tags: ["PyTorch", "MONAI", "QLoRA", "SageMaker"],
+        url: "https://github.com/barathsuresh/neuroscribe", // verify repo URL
+    },
 ];
 
-// ── Skills ───────────────────────────────────────────────────
-export interface SkillCategory {
-    category: string;
-    items: { name: string; level: number }[]; // level: 0–100
-}
-
-export const skills: SkillCategory[] = [
-    {
-        category: "Languages",
-        items: [
-            { name: "Java", level: 92 },
-            { name: "Python", level: 82 },
-            { name: "TypeScript / JavaScript", level: 80 },
-            { name: "C / C++", level: 70 },
-            { name: "Dart", level: 74 },
-            { name: "HTML / CSS", level: 85 },
-        ],
-    },
-    {
-        category: "Backend & Frameworks",
-        items: [
-            { name: "Spring Boot", level: 90 },
-            { name: "Spring WebFlux", level: 82 },
-            { name: "Node.js / Express.js", level: 80 },
-            { name: "Flutter", level: 74 },
-            { name: "Spring Cloud Gateway", level: 78 },
-            { name: "REST APIs & Microservices", level: 90 },
-        ],
-    },
-    {
-        category: "DevOps & Tools",
-        items: [
-            { name: "Docker", level: 88 },
-            { name: "Prometheus & Grafana", level: 80 },
-            { name: "Git", level: 90 },
-            { name: "RabbitMQ / MQTT", level: 82 },
-            { name: "MongoDB", level: 85 },
-            { name: "MinIO / Object Storage", level: 76 },
-        ],
-    },
-    {
-        category: "Concepts",
-        items: [
-            { name: "Distributed Systems", level: 88 },
-            { name: "JWT / OAuth 2.0 / RBAC", level: 85 },
-            { name: "Observability & Tracing", level: 82 },
-            { name: "CI/CD Pipelines", level: 78 },
-            { name: "Spring AI / LLM Integration", level: 72 },
-            { name: "Agile / Code Review", level: 90 },
-        ],
-    },
+// ── Stack ────────────────────────────────────────────────────
+export const stack = [
+    { group: "Languages", items: ["Java", "Python", "TypeScript", "Go", "SQL", "C / C++"] },
+    { group: "Backend", items: ["Spring Boot", "Spring Security", "Spring AI", "FastAPI", "WebFlux", "Microservices"] },
+    { group: "AI / ML", items: ["RAG", "pgvector", "PyTorch", "LoRA / QLoRA", "NVIDIA NIM"] },
+    { group: "Cloud", items: ["AWS", "GCP Cloud Run", "Docker", "Kubernetes", "Terraform", "CI/CD"] },
+    { group: "Data & Observability", items: ["PostgreSQL", "Redis", "RabbitMQ", "Kafka", "Prometheus", "Grafana", "Zipkin"] },
 ];
 
 // ── GA4 Measurement ID ───────────────────────────────────────
-// Replace with your actual ID from Google Analytics dashboard
 export const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";

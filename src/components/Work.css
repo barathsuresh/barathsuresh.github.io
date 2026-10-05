@@ -1,0 +1,115 @@
+.work__item {
+    border-bottom: 1px solid var(--line);
+}
+
+.work__head {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.35rem 1.5rem;
+    align-items: baseline;
+    text-align: left;
+    padding-block: 1.75rem;
+}
+
+.work__period,
+.work__place {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.work__title {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: clamp(1.9rem, 4.4vw, 3.6rem);
+    line-height: 1.05;
+}
+
+.work__title em {
+    font-style: italic;
+    color: var(--accent);
+}
+
+.work__place {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.work__icon {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    align-self: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    font-size: 1.3rem;
+    transition: transform 0.4s var(--ease), background 0.25s, color 0.25s;
+}
+
+.work__head:hover .work__icon {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.work__item.is-open .work__icon {
+    transform: rotate(45deg);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--paper);
+}
+
+.work__panel {
+    overflow: hidden;
+}
+
+.work__panel-inner {
+    padding-bottom: 2.25rem;
+    max-width: 52rem;
+}
+
+.work__summary {
+    font-size: 1.15rem;
+    margin-bottom: 1.5rem;
+}
+
+.work__panel-inner ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.work__panel-inner li {
+    position: relative;
+    padding-left: 1.6rem;
+    color: var(--body);
+    line-height: 1.6;
+}
+
+.work__panel-inner li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.7rem;
+    height: 1px;
+    background: var(--accent);
+}
+
+@media (min-width: 900px) {
+    .work__head {
+        grid-template-columns: 13rem 1fr 9rem auto;
+        padding-block: 2.25rem;
+    }
+
+    .work__period { grid-column: 1; grid-row: 1; }
+    .work__title { grid-column: 2; grid-row: 1; }
+    .work__place { grid-column: 3; grid-row: 1; }
+    .work__icon { grid-column: 4; grid-row: 1; }
+    .work__panel-inner { padding-left: 13rem; }
+}

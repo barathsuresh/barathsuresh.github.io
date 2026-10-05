@@ -1,0 +1,51 @@
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    transition: background-color 0.18s linear, color 0.18s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* curved bottom edge as the curtain lifts */
+    border-bottom-left-radius: 50% 6vh;
+    border-bottom-right-radius: 50% 6vh;
+}
+
+.loader__stage {
+    text-align: center;
+    padding-inline: var(--gutter);
+}
+
+.loader__greet,
+.loader__name {
+    font-size: clamp(3rem, 11vw, 9rem);
+    line-height: 1;
+}
+
+.loader__name em {
+    color: var(--acc);
+}
+
+.loader__dot {
+    display: inline-block;
+    width: 0.14em;
+    height: 0.14em;
+    margin-right: 0.25em;
+    border-radius: 50%;
+    background: var(--acc);
+    vertical-align: middle;
+}
+
+.loader__skip {
+    position: absolute;
+    bottom: 1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    white-space: nowrap;
+}

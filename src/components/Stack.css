@@ -1,0 +1,38 @@
+.stack__grid {
+    display: grid;
+    gap: 2.75rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.stack h3 {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.stack ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.stack li {
+    padding: 0.4rem 0.95rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: default;
+    transition: background 0.2s, color 0.2s;
+}
+
+.stack li:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
