@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import { brand, personal } from "../data";
+import { trackEvent } from "../utils/analytics";
 import Magnetic from "./Magnetic";
 import "./Hero.css";
 
@@ -146,7 +147,12 @@ export default function Hero() {
                         </a>
                     </Magnetic>
                     <Magnetic>
-                        <a className="btn btn--line" href={personal.resumeUrl} download>
+                        <a
+                            className="btn btn--line"
+                            href={personal.resumeUrl}
+                            download
+                            onClick={() => trackEvent("resume_download", { location: "hero" })}
+                        >
                             Resume
                         </a>
                     </Magnetic>

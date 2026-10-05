@@ -1,4 +1,5 @@
 import { projects } from "../data";
+import { trackEvent } from "../utils/analytics";
 import Reveal from "./Reveal";
 import "./Projects.css";
 
@@ -25,6 +26,7 @@ export default function Projects() {
                                     href={p.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => trackEvent("project_click", { project_name: p.name })}
                                     style={
                                         {
                                             "--hbg": HOVER[i % HOVER.length].bg,

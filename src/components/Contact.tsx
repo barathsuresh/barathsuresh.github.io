@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { personal, socials } from "../data";
+import { trackEvent } from "../utils/analytics";
 import Magnetic from "./Magnetic";
 import Reveal from "./Reveal";
 import "./Contact.css";
@@ -40,7 +41,11 @@ export default function Contact() {
                         </span>
                     </motion.h2>
                     <Magnetic pull={0.18}>
-                        <a className="contact__mail serif" href={socials.email}>
+                        <a
+                            className="contact__mail serif"
+                            href={socials.email}
+                            onClick={() => trackEvent("email_click")}
+                        >
                             {personal.email} <span aria-hidden>↗</span>
                         </a>
                     </Magnetic>
@@ -50,7 +55,16 @@ export default function Contact() {
                     <ul>
                         {links.map((l) => (
                             <li key={l.label}>
-                                <a href={l.href} target="_blank" rel="noopener noreferrer">
+                                <a
+                                    href={l.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() =>
+                                        l.label === "Resume"
+                                            ? trackEvent("resume_download", { location: "contact" })
+                                            : trackEvent("social_click", { platform: l.label })
+                                    }
+                                >
                                     {l.label}
                                 </a>
                             </li>
