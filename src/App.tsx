@@ -41,11 +41,12 @@ export default function App() {
 
   return (
     <>
+      {/* Mounted outside the reveal gate so the circle also replaces the system cursor during the intro */}
+      <Cursor />
       {!loaderDone && <Loader onReveal={handleReveal} onComplete={handleComplete} />}
       {revealed && (
         <>
           <ScrollBar />
-          <Cursor />
           <Nav />
           <main>
             <Hero />
